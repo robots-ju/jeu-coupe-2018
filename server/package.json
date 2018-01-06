@@ -1,0 +1,13 @@
+{
+    "name": "jeu-coupe-2018",
+    "private": false,
+    "version": "1.0.0",
+    "main": "server.js",
+    "license": "MIT",
+    "dependencies": {
+        "socket.io": "^2.0.3"
+    },
+    "scripts": {
+        "start": "node ."
+    }
+}
