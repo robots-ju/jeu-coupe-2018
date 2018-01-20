@@ -1,0 +1,21 @@
+body {
+    margin:10;
+    padding:10;
+    left:10;
+    right:10;
+    background-color:darkorange;
+}
+
+.instructions {
+    display: table;
+}
+
+.instructions dl {
+    display: table-row;
+}
+
+.instructions dt, .instructions dd {
+    display: table-cell;
+    margin: 0;
+    padding-left: 20px;
+}
