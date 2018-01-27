@@ -1,6 +1,6 @@
 const socket = io.connect('http://127.0.0.1:8080');
 
-let code = ([]);
+let code = [];
 console.log(code);
 
 function sendProgramme(blocks) {
@@ -33,4 +33,8 @@ document.getElementById('ouvert').addEventListener('click', () => {
 });
 document.getElementById('fermer').addEventListener('click', () => {
     code.push('grab');
+});
+document.getElementById('reset').addEventListener('click', () => {
+    code = [];
+    console.log(code);
 });
