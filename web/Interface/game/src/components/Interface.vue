@@ -2,18 +2,18 @@
   <div class="main">
         <h1 class='title'>{{ pseudo.toUpperCase() }}</h1>
         <div class='middle'>
-            <span class='start' @click="send()">start</span>
+            <span class='start' @click="send()"></span>
             <draggable v-model="liste" class="dragArea1" :options="{animation: 150,group:{name:'block',pull:false}}">
                 <div class='block' v-for="(element,index) in liste" v-bind:key="element" :class="element.class">
-                    <span>{{element.name}}</span>
-                    <button class='button' @click="remove(liste,index)">X</button>
+                    <span></span>
+                    <button class='button' @click="remove(liste,index)">&times;</button>
                 </div>
             </draggable>
         </div>
         <div class='bottom'>
             <draggable v-model="blockStart" class="dragArea" :options="{animation: 150,sort:false,group:{ name:'block',  pull:'clone', put:true}}">
                 <div class='block' v-for="(element) in blockStart" v-bind:key="element" :class="element.class">
-                    <span>{{element.name}}</span>
+                    <span></span>
 
                     </div>
             </draggable>
@@ -93,22 +93,34 @@ body {
     color: white;
 }
 .forward {
-    background: white url(../assets/avancer.png) no-repeat center;
+    background: white url(../../../images/forward.png) no-repeat center;
+    background-size: contain;
+
 }
 .backward {
-    background: white url(../assets/reculer.png) no-repeat center;
+    background: white url(../../../images/backward.png) no-repeat center;
+    background-size: contain;
+
 }
 .left {
-    background: white url(../assets/gauche.png) no-repeat center;
+    background: white url(../../../images/left.png) no-repeat center;
+    background-size: contain;
+
 }
 .right {
-    background: white url(../assets/droite.png) no-repeat center;
+    background: white url(../../../images/right.png) no-repeat center;
+    background-size: contain;
+
 }
 .grab {
-    background: white url(../assets/fermer.png) no-repeat center;
+
+    background: white url(../../../images/grab.png) no-repeat center;
+    background-size: contain;
 }
 .release {
-    background: white url(../assets/ouvrir.png) no-repeat center;
+    background: white url(../../../images/release.png) no-repeat center;
+    background-size: contain;
+
 }
 .bottom:hover {
     background-color: aquamarine
@@ -117,12 +129,11 @@ body {
     display: inline-block;
     position: relative;
     vertical-align: middle;
-    height: 90px;
+    height: 100px;
     width: 100px;
     margin: 20px;
     background-color: azure;
     color: white;
-    border-radius: 10px;
 }
 .middle {
     display: table;
@@ -130,13 +141,17 @@ body {
     padding: 10px;
 }
 .start {
-    background-color: #a2ef44;
+    background: url(../../../images/start.png) no-repeat center;
+    background-size: contain;
     display: inline-block;
     vertical-align: middle;
-    border: solid #a2ef44 10px;
+    text-align: center;
     margin: 20px;
-    height: 90px;
+    height: 100px;
     width: 100px;
+}
+.start:active {
+    transform: rotate(7deg);
 }
 .dragArea {
     padding: 10px;
@@ -148,11 +163,27 @@ body {
     padding: 10px;
     background-color: gray;
 }
+.block:hover .button {
+
+
+    display: block;
+
+}
 .button {
+    display: none;
     position: absolute;
-    left:0;
-    right: 0;
+    font-size: 10px;
+    background: white;
+    border-radius: 3px;
+    border: none;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    order: 0;
+    left: 0;
+    right: 65px;
     margin:auto;
-    bottom: 2%;
+    bottom: 6%;
+
 }
 </style>
