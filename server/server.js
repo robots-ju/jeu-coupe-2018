@@ -14,6 +14,8 @@ const socket = io.listen(httpServer);
 // Les noms de brique se passent en arguments
 const allowedBrickNames = process.argv.slice(2);
 
+const availableBricks = [];
+
 const mindstormsBlocks = {
     forward: 1,
     backward: 2,
@@ -41,13 +43,13 @@ socket.on('connection', client => {
     console.log('Client connected');
 
     client.on('run', run => {
-        if (run.robot > manager.bricks.length) {
+        if (run.robot > availableBricks.length) {
             console.error('Brique ' + run.robot + ' demandée, mais pas dans la liste');
 
             return;
         }
 
-        const brick = manager.bricks[run.robot - 1];
+        const brick = availableBricks[run.robot - 1];
 
         if (!brick.ready) {
             console.error('Brique ' + run.robot + ' demandée mais pas prête');
@@ -73,7 +75,9 @@ manager.on('foundBrick', brick => {
     brick.on('ready', () => {
         console.log('Nouvelle brique connectée. Liste des briques:');
 
-        manager.bricks.forEach((brick, index) => {
+        availableBricks.push(brick);
+
+        availableBricks.forEach((brick, index) => {
             console.log('#' + (index + 1) + ' - Nom: ' + brick.name + ' - SN: ' + brick.serialNumber);
         });
     });
