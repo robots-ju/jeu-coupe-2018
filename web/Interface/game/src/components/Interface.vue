@@ -24,6 +24,8 @@
 <script>
 import draggable from 'vuedraggable'
 import block from './Block'
+import io from 'socket.io-client'
+const socket = io.connect('http://127.0.0.1:8080');
 export default {
 
     name: 'Interface',
@@ -36,12 +38,12 @@ export default {
             pseudo: 'bluedrack',
 
             blockStart: [
-                {id: 0, class: 'avancer', name:'avancer'},
-                {id: 1, class: 'reculer', name:'reculer'},
-                {id: 2, class: 'gauche', name:'tourner gauche'},
-                {id: 3, class: 'droite', name:'tourner droite'},
-                {id: 4, class: 'saisir', name:'saisir'},
-                {id: 5, class: 'lacher', name:'lacher'},
+                {id: 0, class: 'forward', name:'avancer'},
+                {id: 1, class: 'backward', name:'reculer'},
+                {id: 2, class: 'left', name:'tourner gauche'},
+                {id: 3, class: 'right', name:'tourner droite'},
+                {id: 4, class: 'grab', name:'saisir'},
+                {id: 5, class: 'release', name:'lacher'},
             ],
             liste: [],
             parentMsg: 10,
@@ -52,10 +54,16 @@ export default {
             liste.splice(index,1)
         },
         send: function(){
+            let emitBlocks = []
             this.liste.forEach(element => {
-                console.log(element.id)
+                console.log(element.class)
+                emitBlocks.push(element.class)
             });
-            console.log(thi);
+            console.log('Emit message', emitBlocks);
+            socket.emit('run', {
+                robot: 1,
+                blocks: emitBlocks
+            })
         }
     }
 }
@@ -84,22 +92,22 @@ body {
     width: 100%;
     color: white;
 }
-.avancer {
+.forward {
     background: white url(../assets/avancer.png) no-repeat center;
 }
-.reculer {
+.backward {
     background: white url(../assets/reculer.png) no-repeat center;
 }
-.gauche {
+.left {
     background: white url(../assets/gauche.png) no-repeat center;
 }
-.droite {
+.right {
     background: white url(../assets/droite.png) no-repeat center;
 }
-.saisir {
+.grab {
     background: white url(../assets/fermer.png) no-repeat center;
 }
-.lacher {
+.release {
     background: white url(../assets/ouvrir.png) no-repeat center;
 }
 .bottom:hover {
