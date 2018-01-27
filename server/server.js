@@ -11,6 +11,9 @@ console.log(`HTTP :${httpPort} ok`);
 // SOCKET.IO
 const socket = io.listen(httpServer);
 
+// Les noms de brique se passent en arguments
+const allowedBrickNames = process.argv.slice(2);
+
 const mindstormsBlocks = {
     forward: 1,
     backward: 2,
@@ -60,6 +63,12 @@ const manager = new Manager();
 manager.bind();
 
 manager.on('foundBrick', brick => {
+    if (allowedBrickNames.indexOf(brick.name) === -1) {
+        console.info('Détecté la brique ' + brick.name + ' mais elle n\'est pas whitelistée. Pas connecté.');
+
+        return;
+    }
+
     brick.connect();
     brick.on('ready', () => {
         console.log('Nouvelle brique connectée. Liste des briques:');
