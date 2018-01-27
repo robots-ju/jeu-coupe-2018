@@ -25,7 +25,13 @@ function socketProgramToMindstormsProgram(blocks) {
     // Convertit chaque code mindstorm en texte
     // Concatène chaque code en une seule chaîne
     // Convertit la chaîne finale en nombre
-    return parseInt(blocks.map(block => mindstormsBlocks[block] + '').join(''));
+    return parseInt(blocks.map(block => {
+        if (typeof mindstormsBlocks[block] === 'undefined') {
+            throw new Error('Nom de bloc invalide ' + block);
+        }
+
+        return mindstormsBlocks[block] + '';
+    }).join(''));
 }
 
 socket.on('connection', client => {
