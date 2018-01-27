@@ -2,14 +2,20 @@
   <div class="main">
         <h1 class='title'>{{ pseudo.toUpperCase() }}</h1>
         <div class='middle'>
-            <span class='start'>start</span>
-            <draggable v-model="liste" class="dragArea1" :options="{animation: 300,group:'people'}">
-                <div class='block' v-for="element in liste" v-bind:key="element">{{element.name}}</div>
+            <span class='start' @click="send()">start</span>
+            <draggable v-model="liste" class="dragArea1" :options="{animation: 150,group:{name:'block',pull:false}}">
+                <div class='block' v-for="(element,index) in liste" v-bind:key="element" :class="element.class">
+                    <span>{{element.name}}</span>
+                    <button class='button' @click="remove(liste,index)">X</button>
+                </div>
             </draggable>
         </div>
         <div class='bottom'>
-            <draggable v-model="blockStart" class="dragArea" :options="{animation: 300,sort:false,group:{ name:'people',  pull:'clone', put:true}}">
-                <div class='block' v-for="element in blockStart" v-bind:key="element" ><span class='center'>{{element.name}}</span></div>
+            <draggable v-model="blockStart" class="dragArea" :options="{animation: 150,sort:false,group:{ name:'block',  pull:'clone', put:true}}">
+                <div class='block' v-for="(element) in blockStart" v-bind:key="element" :class="element.class">
+                    <span>{{element.name}}</span>
+
+                    </div>
             </draggable>
         </div>
   </div>
@@ -18,6 +24,8 @@
 <script>
 import draggable from 'vuedraggable'
 import block from './Block'
+import io from 'socket.io-client'
+const socket = io.connect('http://127.0.0.1:8080');
 export default {
 
     name: 'Interface',
@@ -30,18 +38,32 @@ export default {
             pseudo: 'bluedrack',
 
             blockStart: [
-                {id: 0, name:'avancer'},
-                {id: 1, name:'reculer'},
-                {id: 2, name:'tourner gauche'},
-                {id: 3, name:'tourner droite'},
-                {id: 4, name:'saisir'},
-                {id: 5, name:'lacher'},
+                {id: 0, class: 'forward', name:'avancer'},
+                {id: 1, class: 'backward', name:'reculer'},
+                {id: 2, class: 'left', name:'tourner gauche'},
+                {id: 3, class: 'right', name:'tourner droite'},
+                {id: 4, class: 'grab', name:'saisir'},
+                {id: 5, class: 'release', name:'lacher'},
             ],
             liste: [],
-
-
             parentMsg: 10,
-
+        }
+    },
+    methods:{
+        remove: function (liste,index){
+            liste.splice(index,1)
+        },
+        send: function(){
+            let emitBlocks = []
+            this.liste.forEach(element => {
+                console.log(element.class)
+                emitBlocks.push(element.class)
+            });
+            console.log('Emit message', emitBlocks);
+            socket.emit('run', {
+                robot: 1,
+                blocks: emitBlocks
+            })
         }
     }
 }
@@ -61,8 +83,7 @@ body {
     font-family: Roboto;
 }
 .bottom {
-        display: inline-block;
-
+    display: inline-block;
     background-color: tomato;
     position: fixed;
     text-align: center;
@@ -71,7 +92,24 @@ body {
     width: 100%;
     color: white;
 }
-
+.forward {
+    background: white url(../assets/avancer.png) no-repeat center;
+}
+.backward {
+    background: white url(../assets/reculer.png) no-repeat center;
+}
+.left {
+    background: white url(../assets/gauche.png) no-repeat center;
+}
+.right {
+    background: white url(../assets/droite.png) no-repeat center;
+}
+.grab {
+    background: white url(../assets/fermer.png) no-repeat center;
+}
+.release {
+    background: white url(../assets/ouvrir.png) no-repeat center;
+}
 .bottom:hover {
     background-color: aquamarine
 }
@@ -82,34 +120,39 @@ body {
     height: 90px;
     width: 100px;
     margin: 20px;
-    border: solid white 10px;
     background-color: azure;
-    color: black;
-    border-radius: 5%;
+    color: white;
+    border-radius: 10px;
 }
 .middle {
     display: table;
     margin: 20px;
     padding: 10px;
-    background-color: tomato;
 }
 .start {
-    background-color: green;
+    background-color: #a2ef44;
     display: inline-block;
     vertical-align: middle;
-    border: solid green 10px;
+    border: solid #a2ef44 10px;
     margin: 20px;
     height: 90px;
     width: 100px;
-    border-radius: 5%;
 }
 .dragArea {
     padding: 10px;
-    background-color: blue;
+    background-color: gray;
 }
 .dragArea1 {
+    text-align: center;
     display: inline;
     padding: 10px;
-    background-color: blue;
+    background-color: gray;
+}
+.button {
+    position: absolute;
+    left:0;
+    right: 0;
+    margin:auto;
+    bottom: 2%;
 }
 </style>

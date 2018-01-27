@@ -1,6 +1,7 @@
 const net = require('net');
 const events = require('events');
 
+// Thanks to https://siouxnetontrack.wordpress.com/2013/09/27/connecting-the-pc-to-our-ev3/
 function createMailboxBuffer(mailboxName, payload) {
     // add null bytes if necessary
     if (mailboxName.charCodeAt(mailboxName.length - 1) !== 0) {
@@ -118,6 +119,7 @@ class Brick extends events.EventEmitter {
         this.ip = ip;
 
         this.socket = null;
+        this.ready = false;
     }
 
     connect() {
@@ -131,6 +133,8 @@ class Brick extends events.EventEmitter {
 
         socket.on('end', () => {
             console.log('EV3 Brick socket ended');
+
+            this.ready = false;
         });
 
         socket.on('error', error => {
@@ -142,6 +146,8 @@ class Brick extends events.EventEmitter {
 
             if (buffer.toString().indexOf('Accept:EV340') === 0) {
                 console.log('EV3 Brick unlocked');
+
+                this.ready = true;
 
                 this.emit('ready');
             } else if (buffer.length > 5 && buffer.readUIntLE(4, 1) === 0x81 && buffer.readUIntLE(5, 1) === 0x9E) {
