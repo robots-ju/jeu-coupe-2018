@@ -1,6 +1,7 @@
 const net = require('net');
 const events = require('events');
 
+// Thanks to https://siouxnetontrack.wordpress.com/2013/09/27/connecting-the-pc-to-our-ev3/
 function createMailboxBuffer(mailboxName, payload) {
     // add null bytes if necessary
     if (mailboxName.charCodeAt(mailboxName.length - 1) !== 0) {
