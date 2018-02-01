@@ -31,3 +31,5 @@ def createMailboxBuffer(mailboxName,payload):
 sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 sock.bind(("",3015))
 data,addr=sock.recv(1024)
+no_serie=data.split("\r\n")[0].split(" ")[1]
+cnx=socket.socket()
