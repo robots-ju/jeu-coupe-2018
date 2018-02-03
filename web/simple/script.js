@@ -64,3 +64,7 @@ document.getElementById('Delone').addEventListener('click', () => {
     code.pop()
     affichecode();
 });
+document.addEventListener('DOMContentLoaded', () => {
+    let nom = localStorage.getItem('nom');
+    document.getElementById('nom').textContent = nom
+}, false);
