@@ -16,7 +16,7 @@
    version="1.1"
    id="svg3735"
    sodipodi:docname="forward.svg"
-   inkscape:export-filename="C:\Users\RobotJu\Desktop\Images Vectorielles\grab.png"
+   inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
@@ -38,11 +38,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="247.34175"
-     inkscape:cy="369.62917"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="74.990144"
+     inkscape:cy="307.03959"
      inkscape:document-units="mm"
-     inkscape:current-layer="svg3735"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:measure-start="0,0"
      inkscape:measure-end="0,0"
@@ -64,7 +64,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -79,31 +79,41 @@
      id="layer2"
      inkscape:label="Calque 2">
     <rect
-       style="opacity:1;fill:#f40000;fill-opacity:1;stroke:#000000;stroke-width:8.4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       style="opacity:1;fill:#f40000;fill-opacity:1;stroke:#000000;stroke-width:8.00003242;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
        id="rect4690"
-       width="201.08333"
-       height="201.08333"
-       x="-1.7763568e-015"
-       y="-1.0833318"
-       inkscape:export-xdpi="95.545555"
-       inkscape:export-ydpi="95.545555" />
+       width="191.99997"
+       height="191.99997"
+       x="4.0102763"
+       y="-195.98972"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png"
+       transform="scale(1,-1)" />
     <path
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       style="fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 37.041679,99.458335 100.54167,25.758627 164.04166,99.458335 H 132.29167 V 173.15803 H 68.791677 V 99.458335 Z"
-       id="path6165"
-       inkscape:connector-curvature="0" />
+       style="opacity:1;fill:none;fill-opacity:0.49019608;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.49019608"
+       d="m 168.49951,105.0003 -63.5,-73.699708 -63.499982,73.699708 h 31.74999 V 178.7 h 63.499992 v -73.6997 z"
+       id="path6165-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Calque 3"
-     style="opacity:0.98">
+     style="opacity:0.98" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Calque 4">
     <path
-       style="fill:none;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="m 47.624999,78.291668 47.625,-47.625 47.625001,47.625 z"
-       id="path6163"
-       inkscape:connector-curvature="0" />
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="opacity:1;fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 163.49999,99.979372 99.999994,26.279662 36.500011,99.979372 h 31.74999 V 173.67907 H 131.74999 V 99.979372 Z"
+       id="path6165"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
   </g>
 </svg>
