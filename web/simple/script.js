@@ -18,8 +18,10 @@ document.getElementById("affichecode").innerHTML = code.map(block => "<li>" + bl
 }
 
 function ajout (block) {
-    code.push(block);
-    affichecode();
+    if (code.length<10){
+        code.push(block);
+        affichecode();
+    }
 }
 
 
