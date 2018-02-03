@@ -17,34 +17,41 @@ document.getElementById("affichecode").innerHTML = code.map(block => "<li>" + bl
 
 }
 
+function ajout (block) {
+    code.push(block);
+    affichecode();
+}
+
+
+
 document.getElementById('send').addEventListener('click', () => {
     sendProgramme(code);
     affichecode();
 });
 
 document.getElementById('avancer').addEventListener('click', () => {
-    code.push('forward');
-    affichecode();
+    ajout('forward');
+
 });
 document.getElementById('reculer').addEventListener('click', () => {
-    code.push('backward');
-    affichecode();
+    ajout('backward');
+
 });
 document.getElementById('droite').addEventListener('click', () => {
-    code.push('right');
-    affichecode();
+    ajout('right');
+
 });
 document.getElementById('gauche').addEventListener('click', () => {
-    code.push('left');
-    affichecode();
+    ajout('left');
+
 });
 document.getElementById('ouvert').addEventListener('click', () => {
-    code.push('release');
-    affichecode();
+    ajout('release');
+
 });
 document.getElementById('fermer').addEventListener('click', () => {
-    code.push('grab');
-    affichecode();
+    ajout('grab');
+
 });
 document.getElementById('reset').addEventListener('click', () => {
     code = [];
