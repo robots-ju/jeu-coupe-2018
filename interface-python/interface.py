@@ -113,7 +113,7 @@ while continuer:
             elif event.key==K_u and touche==4:
                 touche=5
             elif event.key==K_p and touche==5:
-                touche=6
+                continuer=0
             else:
                 touche=0
     i=0
@@ -135,5 +135,3 @@ while continuer:
     pygame.display.flip()
     fnt.blit(fond,(0,0))
     fnt.blit(bas,(0,height-150))
-    if touche==6:
-        continuer=0
