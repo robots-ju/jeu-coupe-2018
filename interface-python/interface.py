@@ -30,17 +30,17 @@ def createMailboxBuffer(mailboxName,payload):
     elif type(payload)==bool:
         buffer+=bytes([1 if payload else 0])
     return buffer
-##sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-##sock.bind(("",3015))
-##addr=None
-##while addr==None:
-##    data,addr=sock.recvfrom(1024)
-##    if input("Se connecter à "+data.decode().split("\r\n")[2][6:]+" ? [O/n] ").upper()=="N":
-##        addr=None
-##no_serie=data.split(b"\r\n")[0].split(b" ")[1]
-##cnx=socket.socket()
-##cnx.connect((addr[0],5555))
-##cnx.send(b'GET /target?sn=' + no_serie + b' VMTP1.0\r\nProtocol: EV3')
+sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+sock.bind(("",3015))
+addr=None
+while addr==None:
+    data,addr=sock.recvfrom(1024)
+    if input("Se connecter à "+data.decode().split("\r\n")[2][6:]+" ? [O/n] ").upper()=="N":
+        addr=None
+no_serie=data.split(b"\r\n")[0].split(b" ")[1]
+cnx=socket.socket()
+cnx.connect((addr[0],5555))
+cnx.send(b'GET /target?sn=' + no_serie + b' VMTP1.0\r\nProtocol: EV3')
 fnt=pygame.display.set_mode((0,0),FULLSCREEN)
 height=fnt.get_rect().bottom
 width=fnt.get_rect().right
@@ -84,7 +84,7 @@ while continuer:
                     for _block in programm:
                         _programm*=10
                         _programm+=_block
-##                    cnx.send(createMailboxBuffer("run",_programm))
+                    cnx.send(createMailboxBuffer("run",_programm))
                     programm=[]
             if event.pos[1] in range((height-250)//2,(height-50)//2):
                 if (event.pos[0]-programmosfet)//blockwidth<len(programm) and (event.pos[0]-programmosfet)//blockwidth>=0:
