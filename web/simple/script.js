@@ -10,7 +10,12 @@ function sendProgramme(blocks) {
         robot: 1,
         blocks,
     });
-};
+
+    if (document.getElementById('effacer-envoi').checked) {
+        code = [];
+        affichecode();
+    }
+}
 
 function affichecode () {
 document.getElementById("affichecode").innerHTML = code.map(block => "<li>" + block + "</li>").join("");
