@@ -4,6 +4,7 @@ pygame.init()
 import socket
 import struct
 import sys
+blockwidth=120
 def createMailboxBuffer(mailboxName,payload):
     if mailboxName[-1]!="\0":
         mailboxName+="\0"
@@ -29,35 +30,40 @@ def createMailboxBuffer(mailboxName,payload):
     elif type(payload)==bool:
         buffer+=bytes([1 if payload else 0])
     return buffer
-sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-sock.bind(("",3015))
-addr=None
-while addr==None:
-    data,addr=sock.recvfrom(1024)
-    if input("Se connecter à "+data.decode().split("\r\n")[2][6:]+" ? [O/n] ").upper()=="N":
-        addr=None
-no_serie=data.split(b"\r\n")[0].split(b" ")[1]
-cnx=socket.socket()
-cnx.connect((addr[0],5555))
-cnx.send(b'GET /target?sn=' + no_serie + b' VMTP1.0\r\nProtocol: EV3')
+##sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+##sock.bind(("",3015))
+##addr=None
+##while addr==None:
+##    data,addr=sock.recvfrom(1024)
+##    if input("Se connecter à "+data.decode().split("\r\n")[2][6:]+" ? [O/n] ").upper()=="N":
+##        addr=None
+##no_serie=data.split(b"\r\n")[0].split(b" ")[1]
+##cnx=socket.socket()
+##cnx.connect((addr[0],5555))
+##cnx.send(b'GET /target?sn=' + no_serie + b' VMTP1.0\r\nProtocol: EV3')
 fnt=pygame.display.set_mode((0,0),FULLSCREEN)
 height=fnt.get_rect().bottom
 width=fnt.get_rect().right
+programmosfet=width//2-410
 if width<1250:
     raise EnvironmentError("L'écran est trop petit")
-if height<550:
+if height<650:
     raise EnvironmentError("L'écran est trop petit")
 blocks=[pygame.Surface((100,100)),pygame.image.load("avancer.png"), pygame.image.load("reculer.png"), pygame.image.load("gauche.png"),pygame.image.load("droite.png"),pygame.image.load("fermer.png"), pygame.image.load("ouvrir.png")]
-blocks[0].fill((255,247,239))
+blocks[0].fill((255,96,0))
 bas=pygame.Surface((width,150))
-bas.fill((255,247,239))
+bas.fill((255,96,0))
 i=1
 while i<7:
     bas.blit(blocks[i],(width//2-575+150*i,25))
     i+=1
-bas.blit(pygame.image.load("start.png"),(width-150,25))
+img_start=pygame.transform.scale(pygame.image.load("start.png"),(100,100))
+bas.blit(img_start,(width-150,25))
 fond=pygame.Surface((width,height))
-fond.fill((255,255,255))
+fond.fill((0xff,0xaf,0x22))
+logo=pygame.image.load("Logo Coupe Robots-JU.png")
+fond.blit(logo,(width//2-(logo.get_rect().right)//2,(height-250)//4-(logo.get_rect().bottom)//2))
+fond.blit(img_start,(programmosfet-120,(height-250)//2))
 touche=0
 continuer=1
 BLOCK=None
@@ -78,24 +84,24 @@ while continuer:
                     for _block in programm:
                         _programm*=10
                         _programm+=_block
-                    cnx.send(createMailboxBuffer("run",_programm))
+##                    cnx.send(createMailboxBuffer("run",_programm))
                     programm=[]
             if event.pos[1] in range((height-250)//2,(height-50)//2):
-                if (event.pos[0])//100<len(programm):
-                    del programm[(event.pos[0])//100]
+                if (event.pos[0]-programmosfet)//blockwidth<len(programm) and (event.pos[0]-programmosfet)//blockwidth>=0:
+                    del programm[(event.pos[0]-programmosfet)//blockwidth]
         elif event.type==MOUSEMOTION:
             if event.buttons==(1,0,0) and block!=None:
                 BLOCK=(blocks[block],(event.pos[0]-x,event.pos[1]-y))
                 if event.pos[1]-y in range((height-270)//2,(height-150)//2):
-                    if (event.pos[0]-x+50)%100 < 60 and (event.pos[0]-x+50)//100<=len(programm):
-                        programm.insert((event.pos[0]-x+50)//100,0)
+                    if (event.pos[0]-x+50-programmosfet)%blockwidth < 60 and (event.pos[0]-x+50-programmosfet)//blockwidth<=len(programm):
+                        programm.insert((event.pos[0]-x+50-programmosfet)//blockwidth,0)
         elif event.type==MOUSEBUTTONUP:
             if add_block:
                 if event.pos[1]-y in range((height-270)//2,(height-150)//2):
-                    if (event.pos[0]-x+50)%100 < 60 and (event.pos[0]-x+50)//100<=len(programm):
-                        programm[(event.pos[0]-x+50)//100]=block
-                        if len(programm)==11:
-                            del programm[10]
+                    if (event.pos[0]-x+50-programmosfet)%blockwidth < 60 and (event.pos[0]-x+50-programmosfet)//blockwidth<=len(programm):
+                        programm[(event.pos[0]-x+50-programmosfet)//blockwidth]=block
+                        if len(programm)==8:
+                            del programm[7]
                             print("\a",end="")
                             sys.stdout.flush()
             BLOCK=None
@@ -125,10 +131,10 @@ while continuer:
             if not BLOCK[1][1] in range((height-270)//2,(height-150)//2):
                 del programm[i]
                 continue
-            if not ((BLOCK[1][0]+50)-100*i < 60 and (BLOCK[1][0]+50)-100*i > 0 ):
+            if not ((BLOCK[1][0]+50-programmosfet)-blockwidth*i < 60 and (BLOCK[1][0]+50-programmosfet)-blockwidth*i > 0 ):
                 del programm[i]
                 continue
-        fnt.blit(blocks[programm[i]],(100*i,(height-250)//2))
+        fnt.blit(blocks[programm[i]],(blockwidth*i+programmosfet,(height-250)//2))
         i+=1
     if BLOCK!=None:
         fnt.blit(*BLOCK)
