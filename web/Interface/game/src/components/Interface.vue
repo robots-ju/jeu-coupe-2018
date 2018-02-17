@@ -14,8 +14,8 @@
             <draggable v-model="blockStart" class="dragArea" :options="{animation: 150,sort:false,group:{ name:'block',  pull:'clone', put:true}}" :clone="cloneBlock">
                 <div class='block' v-for="(element) in blockStart" :key="element.id" :class="element.class">
                     <span></span>
-
-                    </div>
+                    <button class='button' @click="quickSend(element.class)">⏩</button>
+                </div>
             </draggable>
         </div>
   </div>
@@ -54,25 +54,32 @@ export default {
         remove: function (liste,index){
             liste.splice(index,1)
         },
+        emitMessage(blocks) {
+            console.log('Emit message', blocks);
+            socket.emit('run', {
+                robot: 1,
+                blocks: blocks,
+            });
+        },
         send: function(){
             let emitBlocks = []
             this.liste.forEach(element => {
                 console.log(element.class)
                 emitBlocks.push(element.class)
             });
-            console.log('Emit message', emitBlocks);
-            socket.emit('run', {
-                robot: 1,
-                blocks: emitBlocks
-            })
+
+            this.emitMessage(emitBlocks);
+        },
+        quickSend(blockClass) {
+            this.emitMessage([blockClass]);
         },
         cloneBlock(original) {
             let deepCopy = JSON.parse(JSON.stringify(original));
             deepCopy.uid = ++this.newUid;
 
             return deepCopy;
-        }
-    }
+        },
+    },
 }
 </script>
 
