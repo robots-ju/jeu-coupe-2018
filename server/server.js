@@ -1,6 +1,6 @@
 const http = require('http');
 const io = require('socket.io');
-const Manager = require('./ev3/Manager');
+const Manager = require('./ev3/BrickManager');
 
 // HTTP
 const httpServer = http.createServer();

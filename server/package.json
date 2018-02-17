@@ -8,6 +8,10 @@
         "socket.io": "^2.0.3"
     },
     "scripts": {
-        "start": "node ."
+        "start": "node .",
+        "test": "./node_modules/.bin/jasmine-node tests/"
+    },
+    "devDependencies": {
+        "jasmine-node": "^1.14.5"
     }
 }
