@@ -38,12 +38,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="95.913174"
-     inkscape:cy="379.62917"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="80.131512"
+     inkscape:cy="401.8711"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer3"
-     showgrid="true"
+     inkscape:current-layer="layer2"
+     showgrid="false"
      inkscape:measure-start="0,0"
      inkscape:measure-end="0,0"
      showguides="false"
@@ -64,7 +64,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -77,40 +77,71 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Calque 2"
-     style="display:inline">
+     inkscape:label="Calque 2">
     <rect
        style="opacity:1;fill:#f40000;fill-opacity:1;stroke:#000000;stroke-width:8.00003242;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
        id="rect4690"
        width="191.99997"
        height="191.99997"
-       x="4.0000162"
-       y="4.0000143"
-       inkscape:export-xdpi="95.545555"
-       inkscape:export-ydpi="95.545555" />
+       x="4.0102763"
+       y="-195.98972"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png"
+       transform="scale(1,-1)" />
+    <path
+       style="fill:#000000;fill-opacity:0.49019608;stroke:#000000;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.49019608"
+       d="m 86.273106,25.779799 v 50.213727 l -55.5625,55.793014 16.66874,44.63443 h 11.11251 c -4.98654,-36.83658 6.125,-59.15379 45.018744,-59.15379 38.89375,0 44.45095,22.31721 43.88124,59.15379 h 11.11251 L 175.1731,131.78654 114.05435,75.993526 V 25.779799 Z"
+       id="path1443-5-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccc" />
+    <path
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="opacity:1;fill:#000000;fill-opacity:0.49019608;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.49019608"
+       d="m 81.795592,146.34572 16.53223,17.28647 -16.53223,17.28646 v -8.64323 h -16.53223 v -17.28646 h 16.53223 z"
+       id="path6165-1-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
+    <path
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="opacity:1;fill:#000000;fill-opacity:0.49019608;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.49019608"
+       d="m 121.48705,146.34572 -16.53224,17.28647 16.53224,17.28646 v -8.64323 h 16.53223 v -17.28646 h -16.53223 z"
+       id="path6165-7-1-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Calque 3"
-     style="display:inline;opacity:0.98000004">
-    <path
-       style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.49019608"
-       d="m 111.8524,173.13 c 23.18512,-0.17105 47.625,-2.64583 47.625,-42.33333 V 69.9425 c -0.0279,-7.82812 -2.64583,-13.22917 -10.58333,-13.22917 -6.61458,0 -7.9375,1.32292 -10.58333,3.96875 l -1e-5,41.01042 1e-5,-46.30208 c 0,-5.29167 -3.96875,-9.26042 -10.58334,-9.26042 -6.61458,0 -8.8286,1.89849 -10.58333,5.29167 V 101.6925 46.13 c 0,-7.9375 -6.61458,-9.26042 -10.58333,-9.26042 -9.260416,0 -10.583335,5.29167 -10.583335,11.90625 v 52.91667 -47.625 c 0,-2.64583 -2.645831,-7.9375 -10.583333,-7.9375 -10.583331,0 -10.583331,5.29167 -10.583331,10.58333 l -3e-6,71.4375 V 101.6925 c 3e-6,-5.29167 -7.525556,-5.3106 -10.583332,-5.29167 -14.439212,0.35387 -14.359596,16.7996 -13.229166,31.75 0.02058,13.1181 5.291666,23.8125 13.229166,34.39584 7.9375,7.9375 7.9375,10.58333 26.458332,10.58333 z"
-       id="path6683-2"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccccccccccccccccccc" />
-  </g>
+     style="opacity:0.98" />
   <g
      inkscape:groupmode="layer"
-     id="layer6"
-     inkscape:label="Calque 4"
-     style="display:inline">
+     id="layer4"
+     inkscape:label="Calque 4">
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106.8522,168.13021 c 23.18512,-0.17105 47.625,-2.64583 47.625,-42.33333 V 64.942707 c -0.0279,-7.828121 -2.64583,-13.229166 -10.58333,-13.229166 -6.61458,0 -7.9375,1.322917 -10.58333,3.96875 l -1e-5,41.010416 1e-5,-46.302083 c 0,-5.291666 -3.96875,-9.260416 -10.58334,-9.260416 -6.61458,0 -8.8286,1.898494 -10.58333,5.291666 V 96.692707 41.130208 c 0,-7.9375 -6.61458,-9.260417 -10.58333,-9.260417 -9.260417,0 -10.583334,5.291667 -10.583334,11.90625 l -10e-7,52.916666 10e-7,-47.624999 c 0,-2.645834 -2.645833,-7.9375 -10.583334,-7.9375 -10.583332,0 -10.583332,5.291666 -10.583332,10.583333 l -10e-7,71.437499 V 96.692707 c 10e-7,-5.291666 -7.525557,-5.310601 -10.583333,-5.291667 -14.439212,0.353862 -14.359596,16.7996 -13.229166,31.75 0.02058,13.1181 5.291666,23.8125 13.229166,34.39584 7.9375,7.9375 7.9375,10.58333 26.458333,10.58333 z"
-       id="path6683"
+       style="fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 83.33125,22.896233 V 73.10996 l -55.5625,55.79303 16.66874,44.63443 H 55.55 c -4.98654,-36.83658 6.125,-59.15379 45.01875,-59.15379 38.89375,0 44.45095,22.31721 43.88124,59.15379 H 155.5625 L 172.23125,128.90299 111.1125,73.10996 V 22.896233 Z"
+       id="path1443-5"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccccccccccccccccccc" />
+       sodipodi:nodetypes="cccccccccccc" />
+    <path
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="opacity:1;fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 80.504112,144.5205 16.53223,17.28647 -16.53223,17.28646 v -8.64322 h -16.53223 v -17.28646 h 16.53223 z"
+       id="path6165-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
+    <path
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="opacity:1;fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 120.19554,144.5205 -16.53224,17.28647 16.53224,17.28646 v -8.64322 h 16.53223 v -17.28646 h -16.53223 z"
+       id="path6165-7-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
   </g>
 </svg>
