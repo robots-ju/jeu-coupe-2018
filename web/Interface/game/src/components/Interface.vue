@@ -35,7 +35,7 @@ export default {
     },
     data () {
         return {
-            pseudo: 'bluedrack',
+            pseudo: localStorage.getItem('nom') || 'Joueur sans nom',
 
             blockStart: [
                 {id: 0, class: 'forward', name:'avancer'},
