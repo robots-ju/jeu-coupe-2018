@@ -4,15 +4,15 @@
         <div class='middle'>
             <span class='start' @click="send()"></span>
             <draggable v-model="liste" class="dragArea1" :options="{animation: 150,group:{name:'block',pull:false}}">
-                <div class='block' v-for="(element,index) in liste" v-bind:key="element" :class="element.class">
+                <div class='block' v-for="(element,index) in liste" :key="element.uid" :class="element.class">
                     <span></span>
                     <button class='button' @click="remove(liste,index)">&times;</button>
                 </div>
             </draggable>
         </div>
         <div class='bottom'>
-            <draggable v-model="blockStart" class="dragArea" :options="{animation: 150,sort:false,group:{ name:'block',  pull:'clone', put:true}}">
-                <div class='block' v-for="(element) in blockStart" v-bind:key="element" :class="element.class">
+            <draggable v-model="blockStart" class="dragArea" :options="{animation: 150,sort:false,group:{ name:'block',  pull:'clone', put:true}}" :clone="cloneBlock">
+                <div class='block' v-for="(element) in blockStart" :key="element.id" :class="element.class">
                     <span></span>
 
                     </div>
@@ -47,6 +47,7 @@ export default {
             ],
             liste: [],
             parentMsg: 10,
+            newUid: 0,
         }
     },
     methods:{
@@ -64,6 +65,12 @@ export default {
                 robot: 1,
                 blocks: emitBlocks
             })
+        },
+        cloneBlock(original) {
+            let deepCopy = JSON.parse(JSON.stringify(original));
+            deepCopy.uid = ++this.newUid;
+
+            return deepCopy;
         }
     }
 }
