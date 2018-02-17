@@ -32,6 +32,7 @@ class Manager extends events.EventEmitter {
     handleMessage(message, info) {
         const definition = {
             ip: info.address,
+            udpPort: info.port,
         };
 
         message.toString().split('\r\n').forEach(line => {

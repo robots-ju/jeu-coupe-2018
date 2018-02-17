@@ -1,4 +1,5 @@
 const net = require('net');
+const dgram = require('dgram');
 const events = require('events');
 
 // Thanks to https://siouxnetontrack.wordpress.com/2013/09/27/connecting-the-pc-to-our-ev3/
@@ -106,6 +107,7 @@ class Brick extends events.EventEmitter {
     constructor({
         serialNumber,
         port,
+        udpPort,
         name,
         protocol,
         ip,
@@ -114,6 +116,7 @@ class Brick extends events.EventEmitter {
 
         this.serialNumber = serialNumber;
         this.port = port;
+        this.udpPort = udpPort;
         this.name = name;
         this.protocol = protocol;
         this.ip = ip;
@@ -164,8 +167,13 @@ class Brick extends events.EventEmitter {
 
     sendUnlockMessage() {
         // based on http://www.monobrick.dk/guides/how-to-establish-a-wifi-connection-with-the-ev3-brick/
-        console.log('EV3 Brick: sending unlock message');
-        this.socket.write(Buffer.from('GET /target?sn=' + this.serialNumber + ' VMTP1.0\r\nProtocol: EV3'));
+        console.log('EV3 Brick: sending wakeup message');
+        const client = dgram.createSocket('udp4');
+
+        client.send('1', this.udpPort, this.ip, () => {
+            console.log('EV3 Brick: sending unlock message');
+            this.socket.write(Buffer.from('GET /target?sn=' + this.serialNumber + ' VMTP1.0\r\nProtocol: EV3'));
+        });
     }
 
     sendMailboxMessage(mailboxName, payload) {
