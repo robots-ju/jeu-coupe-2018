@@ -35,13 +35,18 @@ sock.bind(("",3015))
 addr=None
 while addr==None:
     data,addr=sock.recvfrom(1024)
-    if input("Se connecter à "+data.decode().split("\r\n")[2][6:]+" ? [O/n] ").upper()[0]=="N":
+    entre=input("Se connecter à "+data.decode().split("\r\n")[2][6:]+" ? [O/n] ").upper()
+    if entre=="":
+        break
+    if entre[0]=="N":
         addr=None
 socket.socket(socket.AF_INET,socket.SOCK_DGRAM).sendto(b"a",addr)
 no_serie=data.split(b"\r\n")[0].split(b" ")[1]
 cnx=socket.socket()
 cnx.connect((addr[0],5555))
 cnx.send(b'GET /target?sn=' + no_serie + b' VMTP1.0\r\nProtocol: EV3')
+if not cnx.recv(1024)==b"Accept:EV340\r\n\r\n":
+    exit(1)
 fnt=pygame.display.set_mode((0,0),FULLSCREEN)
 height=fnt.get_rect().bottom
 width=fnt.get_rect().right
@@ -70,6 +75,9 @@ continuer=1
 BLOCK=None
 add_block=False
 programm=[]
+cmpt=0
+score=0
+font=pygame.font.Font(None,300)
 while continuer:
     for event in pygame.event.get():
         if event.type==MOUSEBUTTONDOWN:
@@ -146,6 +154,16 @@ while continuer:
         i+=1
     if BLOCK!=None:
         fnt.blit(*BLOCK)
+    SCORE=font.render(str(score),1,(0,0,255))
+    fnt.blit(SCORE,(width//2-SCORE.get_rect().right//2,3*height//4-150))
     pygame.display.flip()
     fnt.blit(fond,(0,0))
     fnt.blit(bas,(0,height-150))
+    cmpt+=1
+    if cmpt%500==0:
+        path=b"../prjs/coupe2018/score.rtf\0"
+        msg=bytes([6+len(path),0,1,0,1,150,0,4])+path
+        cnx.send(msg)
+        file=cnx.recv(1024)
+        if file[4]==3 and file[5]==150:
+            score=int(file[12:].decode().split("\r")[0])
