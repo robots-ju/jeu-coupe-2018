@@ -54,6 +54,10 @@ class Command {
     replyStatus() {
         return this.buffer.readUIntLE(5, 1);
     }
+
+    replyError() {
+        return this.buffer.readUIntLE(6, 1);
+    }
 }
 
 // Copied from https://le-www-live-s.legocdn.com/sc/media/files/ev3-developer-kit/lego%20mindstorms%20ev3%20communication%20developer%20kit-f691e7ad1e0c28a4cfb0835993d76ae3.pdf?la=en-us
