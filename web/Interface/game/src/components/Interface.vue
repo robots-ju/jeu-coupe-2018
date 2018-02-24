@@ -107,32 +107,32 @@ body {
     color: white;
 }
 .forward {
-    background: white url(../../../images/forward.png) no-repeat center;
+    background: white url(./../assets/forward.png) no-repeat center;
     background-size: contain;
 
 }
 .backward {
-    background: white url(../../../images/backward.png) no-repeat center;
+    background: white url(./../assets/backward.png) no-repeat center;
     background-size: contain;
 
 }
 .left {
-    background: white url(../../../images/left.png) no-repeat center;
+    background: white url(./../assets/left.png) no-repeat center;
     background-size: contain;
 
 }
 .right {
-    background: white url(../../../images/right.png) no-repeat center;
+    background: white url(./../assets/right.png) no-repeat center;
     background-size: contain;
 
 }
 .grab {
 
-    background: white url(../../../images/grab.png) no-repeat center;
+    background: white url(./../assets/grab.png) no-repeat center;
     background-size: contain;
 }
 .release {
-    background: white url(../../../images/release.png) no-repeat center;
+    background: white url(./../assets/release.png) no-repeat center;
     background-size: contain;
 
 }
@@ -143,6 +143,7 @@ body {
     display: inline-block;
     position: relative;
     vertical-align: middle;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: 100px;
     width: 100px;
     margin: 20px;
@@ -155,7 +156,7 @@ body {
     padding: 10px;
 }
 .start {
-    background: url(../../../images/start.png) no-repeat center;
+    background: url(./../assets/start.png) no-repeat center;
     background-size: contain;
     display: inline-block;
     vertical-align: middle;
@@ -178,10 +179,7 @@ body {
     background-color: gray;
 }
 .block:hover .button {
-
-
     display: block;
-
 }
 .button {
     display: none;
