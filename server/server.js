@@ -1,6 +1,7 @@
 const http = require('http');
 const io = require('socket.io');
 const Manager = require('./ev3/BrickManager');
+const RobotScore = require('./ev3/RobotScore');
 
 // HTTP
 const httpServer = http.createServer();
@@ -24,6 +25,8 @@ const mindstormsBlocks = {
     grab: 5,
     release: 6,
 };
+
+let scores = {};
 
 function socketProgramToMindstormsProgram(blocks) {
     // Remplace chaque nom de bloc par son code mindstorms
@@ -59,10 +62,20 @@ socket.on('connection', client => {
 
         brick.sendMailboxMessage('run', socketProgramToMindstormsProgram(run.blocks));
     });
+
+    client.on('resetScore', command => {
+        console.log('Resetting score for robot ' + command.robot);
+
+        scores[command.robot - 1].resetScore();
+    });
 });
 
 const manager = new Manager();
 manager.bind();
+
+function indexFromBrickName(name) {
+    return availableBricks.findIndex(brick => brick.name === name);
+}
 
 manager.on('foundBrick', brick => {
     if (allowedBrickNames.indexOf(brick.name) === -1) {
@@ -72,6 +85,7 @@ manager.on('foundBrick', brick => {
     }
 
     brick.connect();
+
     brick.on('ready', () => {
         console.log('Nouvelle brique connectée. Liste des briques:');
 
@@ -80,5 +94,27 @@ manager.on('foundBrick', brick => {
         availableBricks.forEach((brick, index) => {
             console.log('#' + (index + 1) + ' - Nom: ' + brick.name + ' - SN: ' + brick.serialNumber);
         });
+
+        const robotScore = new RobotScore();
+        robotScore.on('scoreChanged', score => {
+            console.log(score);
+
+            socket.emit('scoreChanged', {
+                robot: indexFromBrickName(brick.name) + 1,
+                score,
+            });
+        });
+
+        scores[indexFromBrickName(brick.name)] = robotScore;
+
+        setInterval(() => {
+            brick.readFile('../prjs/coupe2018/score.rtf');
+        }, 5000);
+    });
+
+    brick.on('fileContent', file => {
+        const scoreOnBrick = parseInt(file.payload.split('\r')[0]);
+
+        scores[indexFromBrickName(brick.name)].seenBrickScore(scoreOnBrick);
     });
 });

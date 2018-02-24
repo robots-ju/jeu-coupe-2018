@@ -2,11 +2,26 @@ const socket = io.connect('http://127.0.0.1:8080');
 
 let code = [];
 
+// Numéro du robot contrôlé
+const robot = 1;
+
+socket.on('scoreChanged', change => {
+    if (change.robot === robot) {
+        document.getElementById('score').innerText = change.score;
+    }
+});
+
+function resetScore() {
+    socket.emit('resetScore', {
+        robot,
+    });
+}
+
 function sendProgramme(blocks) {
     console.log('run', blocks);
 
     socket.emit('run', {
-        robot: 1,
+        robot,
         blocks,
     });
 
@@ -63,6 +78,10 @@ document.getElementById('reset').addEventListener('click', () => {
 document.getElementById('Delone').addEventListener('click', () => {
     code.pop();
     affichecode();
+});
+
+document.getElementById('resetScore').addEventListener('click', () => {
+    resetScore();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
