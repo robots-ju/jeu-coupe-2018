@@ -2,7 +2,7 @@
   <div class="main">
         <h1 class='title'>{{ pseudo.toUpperCase() }}</h1>
         <div class='middle'>
-            <div class='start'></div>
+            <div class='start' @click="start()"></div>
             <draggable
                 v-model="liste"
                 class="dragArea1"
@@ -29,7 +29,14 @@
                 </div>
             </draggable>
         </div>
+        <div class='loading' id='loading'>
+            <span class='text front'>loading</span>
+            <div id='animate'></div>
+
+
+        </div>
         <div class='bottom'>
+
             <draggable
                 v-model="blockStart"
                 class="dragArea"
@@ -61,7 +68,6 @@
 
 <script>
 import draggable from 'vuedraggable'
-import block from './Block'
 import io from 'socket.io-client'
 const socket = io.connect('http://127.0.0.1:8080');
 export default {
@@ -69,7 +75,7 @@ export default {
     name: 'Interface',
     components:{
         draggable,
-        block
+
     },
     data () {
         return {
@@ -110,6 +116,26 @@ export default {
         },
         quickSend(blockClass) {
             this.emitMessage([blockClass]);
+        },
+        start() {
+            let loading = document.getElementById('loading')
+            let animate = document.getElementById('animate')
+            let id = setInterval(frame, 1)
+            loading.style.visibility = 'visible'
+            let index = 0;
+            function frame() {
+                console.log('coucou')
+
+                if(index >= document.body.clientWidth-20){
+                    animate.style.width = '0px';
+                    loading.style.visibility = 'hidden'
+                    clearInterval(id)
+                }
+                index += 10;
+                animate.style.width = index+'px';
+            }
+            console.log(loading.style)
+
         },
         cloneBlock(original) {
             let deepCopy = JSON.parse(JSON.stringify(original));
@@ -217,6 +243,7 @@ body {
 }
 .dragArea1 {
     text-align: center;
+    border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: inline;
     padding: 10px;
@@ -240,6 +267,23 @@ body {
     right: 65px;
     margin:auto;
     bottom: 6%;
+}
 
+.loading {
+    position: absolute;
+
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+#animate {
+    background-color: gray;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    height: 100px;
 }
 </style>
