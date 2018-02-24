@@ -35,7 +35,7 @@ sock.bind(("",3015))
 addr=None
 while addr==None:
     data,addr=sock.recvfrom(1024)
-    if input("Se connecter à "+data.decode().split("\r\n")[2][6:]+" ? [O/n] ").upper()=="N":
+    if input("Se connecter à "+data.decode().split("\r\n")[2][6:]+" ? [O/n] ").upper()[0]=="N":
         addr=None
 socket.socket(socket.AF_INET,socket.SOCK_DGRAM).sendto(b"a",addr)
 no_serie=data.split(b"\r\n")[0].split(b" ")[1]
