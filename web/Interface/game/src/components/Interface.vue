@@ -1,7 +1,9 @@
 <template>
   <div class="main">
         <h1 class='title'>{{ pseudo.toUpperCase() }}</h1>
+        <div class='center' v-if="limit === true">Nombre de block limite est atteint !</div>
         <div class='middle'>
+
             <div class='start' @click="start()"></div>
             <draggable
                 v-model="liste"
@@ -92,6 +94,7 @@ export default {
             liste: [],
             parentMsg: 10,
             newUid: 0,
+            limit: false,
         }
     },
     methods:{
@@ -138,10 +141,15 @@ export default {
 
         },
         cloneBlock(original) {
-            let deepCopy = JSON.parse(JSON.stringify(original));
-            deepCopy.uid = ++this.newUid;
+            if(this.liste.length < 7){
+                let deepCopy = JSON.parse(JSON.stringify(original));
+                deepCopy.uid = ++this.newUid;
+                return deepCopy;
+            }else{
+                this.limit = true
+                console.log('nombre de block maximum atteint')
+            }
 
-            return deepCopy;
         },
     },
 }
@@ -270,8 +278,9 @@ body {
 }
 
 .loading {
+    visibility: hidden;
     position: absolute;
-
+    color: #fff;
     bottom: 20%;
     left: 0;
     right: 0;
@@ -283,7 +292,10 @@ body {
     z-index: -1;
     top: 0;
     bottom: 0;
-    width: 10px;
-    height: 100px;
+}
+.center {
+    display: block;
+    text-align: center;
+    color: red;
 }
 </style>
