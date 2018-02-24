@@ -3,7 +3,8 @@ body {
     padding:10;
     left:10;
     right:10;
-    background-color:darkorange;
+    background-color:orange;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .instructions {
@@ -16,6 +17,6 @@ body {
 
 .instructions dt, .instructions dd {
     display: table-cell;
-    margin: 0;
-    padding-left: 20px;
+    margin: 10;
+    padding-left: 10px;
 }
