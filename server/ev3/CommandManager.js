@@ -111,6 +111,38 @@ class CommandManager {
             payload,
         };
     }
+
+    createFileReadCommand(path) {
+        if (path.charCodeAt(path.length - 1) !== 0) {
+            path += '\0';
+        }
+
+        const MAX_BYTES_LENGTH = 2;
+        const data = Buffer.alloc(MAX_BYTES_LENGTH + path.length);
+        data.writeUIntLE(1024, 0, MAX_BYTES_LENGTH);
+        data.write(path, MAX_BYTES_LENGTH, path.length);
+
+        return this.createCommand({
+            commandType: Command.SYSTEM_COMMAND_REPLY,
+            systemCommand: Command.BEGIN_GETFILE,
+            data,
+        });
+    }
+
+    readFileContentResponse(response) {
+        const returnStatus = response.buffer.readUIntLE(6, 1);
+        const fileSize = response.buffer.readUIntLE(7, 4);
+        const handle = response.buffer.readUIntLE(11, 1);
+        const payload = response.buffer.toString('ascii', 12);
+
+        return {
+            response,
+            returnStatus,
+            fileSize,
+            handle,
+            payload,
+        };
+    }
 }
 
 module.exports = CommandManager;

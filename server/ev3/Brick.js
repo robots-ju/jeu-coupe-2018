@@ -56,20 +56,47 @@ class Brick extends events.EventEmitter {
                 this.ready = true;
 
                 this.emit('ready');
-            } else if (buffer.length > 5 && buffer.readUIntLE(4, 1) === 0x81 && buffer.readUIntLE(5, 1) === 0x9E) {
+            } else if (buffer.length > 5) {
                 const response = this.commands.parseResponse(buffer);
 
-                if (response.systemCommand() === Command.WRITEMAILBOX) {
-                    const message = this.commands.readMailboxResponse(response);
+                switch (true) {
+                    case response.replyType() === Command.SYSTEM_REPLY_ERROR:
+                        let errors = {};
+                        errors[Command.UNKNOWN_HANDLE] = 'Unknown handle';
+                        errors[Command.HANDLE_NOT_READY] = 'Handle not ready';
+                        errors[Command.CORRUPT_FILE] = 'Corrupt file';
+                        errors[Command.NO_HANDLES_AVAILABLE] = 'No handles available';
+                        errors[Command.NO_PERMISSION] = 'No permission';
+                        errors[Command.ILLEGAL_PATH] = 'Illegal path';
+                        errors[Command.FILE_EXITS] = 'File exists';
+                        errors[Command.END_OF_FILE] = 'End of file';
+                        errors[Command.SIZE_ERROR] = 'Size error';
+                        errors[Command.ILLEGAL_FILENAME] = 'Illegal filename';
+                        errors[Command.ILLEGAL_CONNECTION] = 'Illegal connection';
 
-                    console.log('Got mailbox message');
+                        console.error('Reply error (' + errors[response.replyError()] + ')', response);
 
-                    this.emit('receiveMailbox', message);
-                } else {
-                    this.error('Unhandled response', response);
+                        break;
+                    case response.commandType() === Command.SYSTEM_COMMAND_NO_REPLY && response.systemCommand() === Command.WRITEMAILBOX:
+                        const message = this.commands.readMailboxResponse(response);
+
+                        console.log('Got mailbox message');
+
+                        this.emit('receiveMailbox', message);
+
+                        break;
+                    case response.replyType() === Command.SYSTEM_REPLY && response.systemCommand() === Command.BEGIN_GETFILE:
+                    case response.replyType() === Command.SYSTEM_REPLY && response.systemCommand() === Command.CONTINUE_GETFILE:
+                        console.log('Got file content response');
+
+                        this.emit('fileContent', this.commands.readFileContentResponse(response));
+
+                        break;
+                    default:
+                        console.error('Unhandled response', response);
                 }
             } else {
-                this.error('Invalid buffer size', buffer);
+                console.error('Invalid buffer size', buffer);
             }
         });
 
@@ -95,6 +122,12 @@ class Brick extends events.EventEmitter {
         console.log('Sending mailbox message', mailboxName, payload);
 
         this.sendCommand(this.commands.createMailboxCommand(mailboxName, payload));
+    }
+
+    readFile(path) {
+        console.log('Sending file read command', path);
+
+        this.sendCommand(this.commands.createFileReadCommand(path));
     }
 }
 
