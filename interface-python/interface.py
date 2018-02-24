@@ -49,7 +49,7 @@ if width<1250:
     raise EnvironmentError("L'écran est trop petit")
 if height<650:
     raise EnvironmentError("L'écran est trop petit")
-blocks=[pygame.Surface((100,100)),pygame.image.load("avancer.png"), pygame.image.load("reculer.png"), pygame.image.load("gauche.png"),pygame.image.load("droite.png"),pygame.image.load("fermer.png"), pygame.image.load("ouvrir.png")]
+blocks=[pygame.Surface((100,100)),pygame.transform.scale(pygame.image.load("avancer.png"),(100,100)),pygame.transform.scale(pygame.image.load("reculer.png"),(100,100)),pygame.transform.scale(pygame.image.load("gauche.png"),(100,100)),pygame.transform.scale(pygame.image.load("droite.png"),(100,100)),pygame.transform.scale(pygame.image.load("fermer.png"),(100,100)),pygame.transform.scale(pygame.image.load("ouvrir.png"),(100,100))]
 blocks[0].fill((255,96,0))
 bas=pygame.Surface((width,150))
 bas.fill((255,96,0))
@@ -89,6 +89,13 @@ while continuer:
             if event.pos[1] in range((height-250)//2,(height-50)//2):
                 if (event.pos[0]-programmosfet)//blockwidth<len(programm) and (event.pos[0]-programmosfet)//blockwidth>=0:
                     del programm[(event.pos[0]-programmosfet)//blockwidth]
+                elif (event.pos[0]-programmosfet)//blockwidth==-1:
+                    _programm=0
+                    for _block in programm:
+                        _programm*=10
+                        _programm+=_block
+                    cnx.send(createMailboxBuffer("run",_programm))
+                    programm=[]
         elif event.type==MOUSEMOTION:
             if event.buttons==(1,0,0) and block!=None:
                 BLOCK=(blocks[block],(event.pos[0]-x,event.pos[1]-y))
