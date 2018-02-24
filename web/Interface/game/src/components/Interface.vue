@@ -2,19 +2,57 @@
   <div class="main">
         <h1 class='title'>{{ pseudo.toUpperCase() }}</h1>
         <div class='middle'>
-            <span class='start' @click="send()"></span>
-            <draggable v-model="liste" class="dragArea1" :options="{animation: 150,group:{name:'block',pull:false}}">
-                <div class='block' v-for="(element,index) in liste" :key="element.uid" :class="element.class">
-                    <span></span>
-                    <button class='button' @click="remove(liste,index)">&times;</button>
+            <div class='start'></div>
+            <draggable
+                v-model="liste"
+                class="dragArea1"
+                :options="{
+                    animation: 150,
+                    group:{
+                        name:'block',
+                        pull:true
+                    }
+                }"
+            >
+                <div
+                    class='block'
+                    v-for="(element,index) in liste"
+                    :key="element.uid"
+                    :class="element.class"
+                >
+                    <button
+                        class='button'
+                        @click="remove(liste,index)"
+                    >
+                        &times;
+                    </button>
                 </div>
             </draggable>
         </div>
         <div class='bottom'>
-            <draggable v-model="blockStart" class="dragArea" :options="{animation: 150,sort:false,group:{ name:'block',  pull:'clone', put:true}}" :clone="cloneBlock">
-                <div class='block' v-for="(element) in blockStart" :key="element.id" :class="element.class">
-                    <span></span>
-                    <button class='button' @click="quickSend(element.class)">⏩</button>
+            <draggable
+                v-model="blockStart"
+                class="dragArea"
+                :options="{
+                    animation: 150,
+                    sort:false,
+                    group:{
+                        name:'block',
+                        pull:'clone',
+                        put:true
+                    }
+                }"
+                :clone="cloneBlock"
+            >
+                <div
+                    class='block'
+                    v-for="(element) in blockStart"
+                    :key="element.id"
+                    :class="element.class"
+                >
+                    <button class='button' @click="quickSend(element.class)">
+                        ⏩
+                    </button>
                 </div>
             </draggable>
         </div>
@@ -84,9 +122,10 @@ export default {
 </script>
 
 <style>
+
 body {
     margin: 0;
-    font-family: Roboto;
+    font-family: 'Open sans', sans-serif;
     font-size: 20px;
 }
 .main {
@@ -94,11 +133,9 @@ body {
 }
 .title {
     text-align: center;
-    font-family: Roboto;
 }
 .bottom {
     display: inline-block;
-    background-color: tomato;
     position: fixed;
     text-align: center;
     bottom: 0;
@@ -136,9 +173,6 @@ body {
     background-size: contain;
 
 }
-.bottom:hover {
-    background-color: aquamarine
-}
 .block {
     display: inline-block;
     position: relative;
@@ -152,11 +186,13 @@ body {
 }
 .middle {
     display: table;
-    margin: 20px;
+    margin: 100px;
     padding: 10px;
 }
 .start {
     background: url(./../assets/start.png) no-repeat center;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-size: contain;
     display: inline-block;
     vertical-align: middle;
@@ -166,14 +202,22 @@ body {
     width: 100px;
 }
 .start:active {
-    transform: rotate(7deg);
+    animation: pulse 0.1s;
+    box-shadow: 0 0 0 2em rgba(#fff,0);
+}
+@keyframes pulse {
+  100% {
+
+  }
 }
 .dragArea {
     padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: gray;
 }
 .dragArea1 {
     text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: inline;
     padding: 10px;
     background-color: gray;
