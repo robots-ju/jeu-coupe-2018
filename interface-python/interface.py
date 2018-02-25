@@ -68,7 +68,7 @@ bas.blit(img_start,(width-150,25))
 fond=pygame.Surface((width,height))
 fond.fill((0xff,0xaf,0x22))
 logo=pygame.image.load("Logo Coupe Robots-JU.png")
-fond.blit(logo,(width//2-(logo.get_rect().right)//2,(height-250)//4-(logo.get_rect().bottom)//2))
+fond.blit(logo,(30,(height-250)//4-(logo.get_rect().bottom)//2))
 fond.blit(img_start,(programmosfet-120,(height-250)//2))
 touche=0
 continuer=1
@@ -78,6 +78,8 @@ programm=[]
 cmpt=0
 score=0
 font=pygame.font.Font(None,300)
+font2=pygame.font.Font(None,25)
+block=None
 while continuer:
     for event in pygame.event.get():
         if event.type==MOUSEBUTTONDOWN:
@@ -105,6 +107,9 @@ while continuer:
                         _programm+=_block
                     cnx.send(createMailboxBuffer("run",_programm))
                     programm=[]
+            if event.pos[0] in range(reset_coords["left"],reset_coords["right"]) and event.pos[1] in range(reset_coords["top"],reset_coords["bottom"]):
+                cnx.send(createMailboxBuffer("score","0"))
+                score=0
         elif event.type==MOUSEMOTION:
             if event.buttons==(1,0,0) and block!=None:
                 BLOCK=(blocks[block],(event.pos[0]-x,event.pos[1]-y))
@@ -154,8 +159,14 @@ while continuer:
         i+=1
     if BLOCK!=None:
         fnt.blit(*BLOCK)
-    SCORE=font.render(str(score),1,(0,0,255))
-    fnt.blit(SCORE,(width//2-SCORE.get_rect().right//2,3*height//4-150))
+    SCORE=font.render(str(score),1,(0,0,0))
+    fnt.blit(SCORE,(width-SCORE.get_rect().right-30,(height-250)//4-SCORE.get_rect().bottom//2))
+    reset=font2.render("reset",1,(0,0,0))
+    resetbg=pygame.Surface((reset.get_rect().right+20,reset.get_rect().bottom+20))
+    resetbg.fill((128,128,255))
+    resetbg.blit(reset,(10,10))
+    fnt.blit(resetbg,(width-resetbg.get_rect().right-30,(height-250)//4+SCORE.get_rect().bottom//2+20))
+    reset_coords={"left":width-resetbg.get_rect().right-30,"top":(height-250)//4+SCORE.get_rect().bottom//2+20,"right":width-30,"bottom":(height-250)//4+SCORE.get_rect().bottom//2+20+resetbg.get_rect().bottom}
     pygame.display.flip()
     fnt.blit(fond,(0,0))
     fnt.blit(bas,(0,height-150))
