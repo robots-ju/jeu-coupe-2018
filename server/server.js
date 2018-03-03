@@ -29,6 +29,10 @@ const mindstormsBlocks = {
 let scores = {};
 
 function socketProgramToMindstormsProgram(blocks) {
+    if (blocks.length === 0) {
+        return 0;
+    }
+
     // Remplace chaque nom de bloc par son code mindstorms
     // Convertit chaque code mindstorm en texte
     // Concatène chaque code en une seule chaîne
@@ -66,7 +70,13 @@ socket.on('connection', client => {
     client.on('resetScore', command => {
         console.log('Resetting score for robot ' + command.robot);
 
-        scores[command.robot - 1].resetScore();
+        const robotIndex = command.robot - 1;
+
+        if (scores.length > robotIndex) {
+            scores[robotIndex].resetScore();
+        } else {
+            console.error('Demandé à remettre le score du robot ' + command.robot + ' à zéro mais il n\'est pas connecté.');
+        }
     });
 });
 
