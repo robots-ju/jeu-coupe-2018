@@ -66,7 +66,13 @@ socket.on('connection', client => {
     client.on('resetScore', command => {
         console.log('Resetting score for robot ' + command.robot);
 
-        scores[command.robot - 1].resetScore();
+        const robotIndex = command.robot - 1;
+
+        if (scores.length > robotIndex) {
+            scores[robotIndex].resetScore();
+        } else {
+            console.error('Demandé à remettre le score du robot ' + command.robot + ' à zéro mais il n\'est pas connecté.');
+        }
     });
 });
 
