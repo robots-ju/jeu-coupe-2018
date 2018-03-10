@@ -7,5 +7,5 @@ document.getElementById('commencer_simple').addEventListener('click', () => {
 document.getElementById('commencer_autre').addEventListener('click', () => {
     let nom = document.getElementById('nom').value;
     localStorage.setItem('nom',nom);
-    window.open('../../Interface/game/index.html');
+    window.open('../../Interface/game/dist/index.html');
 });
