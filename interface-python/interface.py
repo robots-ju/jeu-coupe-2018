@@ -178,3 +178,4 @@ while continuer:
         file=cnx.recv(1024)
         if file[4]==3 and file[5]==150:
             score=int(file[12:].decode().split("\r")[0])
+pygame.quit()
