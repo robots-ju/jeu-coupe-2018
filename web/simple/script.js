@@ -32,7 +32,7 @@ function sendProgramme(blocks) {
 }
 
 function affichecode() {
-    document.getElementById('affichecode').innerHTML = code.map(block => '<li>' + block + '</li>').join('');
+    document.getElementById('affichecode').innerHTML = code.map(block => '<img src="./Medias/' + block + '.png" width="80" height="80" >').join('');
 }
 
 function ajout(block) {
