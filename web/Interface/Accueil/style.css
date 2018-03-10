@@ -20,3 +20,13 @@ body {
     margin: 10;
     padding-left: 10px;
 }
+
+.instructions{
+    border: 2px solid black;
+}
+
+.consignes{
+    border: 2px solid black;
+    margin: 10;
+    padding-left: 10px;
+}
