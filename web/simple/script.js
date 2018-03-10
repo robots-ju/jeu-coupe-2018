@@ -87,5 +87,5 @@ document.getElementById('resetScore').addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
     let nom = localStorage.getItem('nom');
 
-    document.getElementById('nom').textContent = nom;
+    document.getElementById('nom').textContent = nom || 'nom';
 }, false);

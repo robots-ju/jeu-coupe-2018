@@ -4,16 +4,55 @@ body {
 
 #app {
     padding: 10px;
+    margin-top: 40px;
 }
 
 #app button {
     margin: 0px 2px;
 }
 
-#app #send {
-    margin-left: 50px;
+
+#app #nom {
+    margin-left: 500px;
 }
 
-#affichecode img {
+#nomscore {
+    display: flex;
+    margin-top: 35px;
+    margin-left: 20px;
+    font-size: 2em;
+
+}
+
+.zonecode {
+    display: flex;
+    margin-top: 10px;
+
+}
+
+#affichecode {
+    background: #34495e;
+    flex-grow: 1;
+    min-height: 100px;
+}
+
+#affichecode img, .actions img {
     margin: 10px;
+
+}
+
+.actions {
+    background: #2c3e50;
+}
+
+.logo {
+    margin-top: 20px;
+}
+#nom {
+    flex-grow:1;
+    text-align:right;
+    margin-right: 80px;
+}
+#resetScore {
+    margin-left: 20px;
 }

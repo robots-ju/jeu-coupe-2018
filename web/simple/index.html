@@ -9,32 +9,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <br></br>
-     <img src ="./Medias/Logo%20Coupe%20Robots-JU.svg" width="200" height="40" alt = "Logo de la Coupe Robots-JU">
-    <br></br>
-    <p>
-        Score
-        <span id="score">?</span>
-        <button id="resetScore">Remettre à zéro</button>
-    </p>
-<div id="app">
-    <button id="avancer"> <img src="./Medias/forward.png" width="80" height="80" /></button>
-    <button id="reculer"> <img src="./Medias/backward.png" width="80" height="80" /></button>
-    <button id="droite"> <img src="./Medias/right.png" width="80" height="80" /></button>
-    <button id="gauche"> <img src="./Medias/left.png" width="80" height="80" /> </button>
-    <button id="ouvert"> <img src="./Medias/release.png" width="80" height="80" /> </button>
-    <button id="fermer"> <img src="./Medias/grab.png" width="80" height="80" /></button>
-    <button id="send"> <img src="./Medias/start2.png" width="80" height="80" /></button>
-    <button id="reset">Effacer le programme</button>
-    <button id="Delone">Effacer un élément</button>
-    <span id="nom"></span>
+
+     <img class="logo" src ="./Medias/Logo%20Coupe%20Robots-JU.svg" width="200" height="40" alt = "Logo de la Coupe Robots-JU">
+
+
+<div id="nomscore">
+        Score: <span id="score">0</span>
+        <img id="resetScore" src="./Medias/reset.png" width="40" height="40" alt="reset" />
+        <span id="nom"></span>
 </div>
-    <label>
-        <input type="checkbox" id="effacer-envoi" checked>
-        Effacer le programme lors de l'envoi
-    </label>
-<br></br>
-<div id="affichecode"></div>
+<div id="app">
+    <button id="avancer"> <img src="./Medias/forward.png" width="80" height="80" alt="avancer" /></button>
+    <button id="reculer"> <img src="./Medias/backward.png" width="80" height="80" alt="Reculer" /></button>
+    <button id="droite"> <img src="./Medias/right.png" width="80" height="80" alt="droite"/></button>
+    <button id="gauche"> <img src="./Medias/left.png" width="80" height="80" alt="gauche" /> </button>
+    <button id="ouvert"> <img src="./Medias/release.png" width="80" height="80" alt="ouvert"/> </button>
+    <button id="fermer"> <img src="./Medias/grab.png" width="80" height="80" alt="fermer" /></button>
+
+</div>
+
+<div class="zonecode">
+    <div id="affichecode"></div>
+    <div class="actions">
+    <img id="send" src="./Medias/start2.png" width="80" height="80" alt="envoyer" />
+    <img id="reset" src="./Medias/clear_programm.png" width="80" height="80" alt="reset"/>
+    <img id="Delone" src="./Medias/clear_element.png" width="80" height="80" alt="delone" />
+    </div>
+</div>
+
+
+<label>
+    <input type="checkbox" id="effacer-envoi" checked>
+    Effacer le programme lors de l'envoi
+</label>
 
 
 
