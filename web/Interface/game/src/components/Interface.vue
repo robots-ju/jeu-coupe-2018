@@ -2,8 +2,15 @@
   <div class="main">
         <div class="loader" id='loader'></div>
         <h1 class='title'>{{ pseudo.toUpperCase() }}</h1>
-        <div class='center' v-if='liste.length > limit - 1'>Le nombre de block limite atteint !</div>
-        <div class='center' v-else>Il te reste {{ limit - liste.length }} block<span v-if='limit-liste.length > 1'>s</span></div>
+        <div class='center red' v-if='liste.length > limit - 1'>Le nombre de block limite atteint !</div>
+        <div class='center white' v-else>Il te reste {{ limit - liste.length }} block<span v-if='limit-liste.length > 1'>s</span></div>
+        <div class='center'>
+            Score: <span id='score'>{{score}}</span>
+
+        </div>
+        <div class="center">
+            <button class="but" @click="resetScore()">Remettre à zéro</button>
+        </div>
         <div class='middle'>
 
             <div class='start' @click="start()"></div>
@@ -32,10 +39,6 @@
                     </button>
                 </div>
             </draggable>
-        </div>
-        <div class='loading' id='loading'>
-            <span class='text front'>loading</span>
-            <div id='animate'></div>
         </div>
         <div class='bottom'>
             <draggable
@@ -70,7 +73,8 @@
 <script>
 import draggable from 'vuedraggable'
 import io from 'socket.io-client'
-const socket = io.connect('http://127.0.0.1:8080');
+const socket = io.connect('http://127.0.0.1:8080')
+
 export default {
 
     name: 'Interface',
@@ -93,20 +97,30 @@ export default {
             parentMsg: 10,
             newUid: 0,
             limit: 7,
+            score: 0,
         }
+    },
+    created: function(){
+        console.log('Socket logged !')
+        socket.on('scoreChanged', change => {
+            if (change.robot === robot) {
+                this.score = change.robot
+            }
+        })
     },
     methods:{
         remove: function (liste,index){
             liste.splice(index,1)
         },
         emitMessage(blocks) {
-            console.log('Emit message', blocks);
+            console.log('Emit message', blocks)
             socket.emit('run', {
                 robot: 1,
                 blocks: blocks,
             });
         },
         send: function(){
+            console.log('Blocks sending !')
             let emitBlocks = []
             this.liste.forEach(element => {
                 console.log(element.class)
@@ -119,6 +133,7 @@ export default {
             this.emitMessage([blockClass]);
         },
         start() {
+            this.send()
             let loading = document.getElementById('loader')
             let animate = document.getElementById('animate')
             loading.style.visibility = 'visible'
@@ -138,6 +153,12 @@ export default {
                 console.log('nombre de block maximum atteint')
             }
 
+        },
+        resetScore() {
+            this.liste = []
+            socket.emit('resetScore', {
+                robot,
+            });
         },
     },
 }
@@ -208,7 +229,7 @@ body {
 }
 .middle {
     display: table;
-    margin: 100px;
+    margin: 25px;
     padding: 10px;
 }
 .start {
@@ -230,7 +251,7 @@ body {
 .dragArea {
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: gray;
+    background-color: #9E9E9E;
     bottom: 0;
     position: fixed;
     left: 0;
@@ -242,7 +263,7 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: inline;
     padding: 10px;
-    background-color: gray;
+    background-color: #9E9E9E;
 }
 .block:hover .button {
     display: block;
@@ -269,12 +290,12 @@ body {
     left: 50%;
     top: 50%;
     z-index: 1;
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     margin: -75px 0 0 -75px;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid gray;
+    border-top: 16px solid #9E9E9E;
     width: 60px;
     height: 60px;
     -webkit-animation: spin 1s linear infinite;
@@ -284,26 +305,23 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-.loading {
-    visibility: hidden;
-    position: absolute;
-    color: #fff;
-    position: fixed;
-    bottom: 25%;
-    left: 0;
-    right: 0;
-    text-align: center;
-}
-#animate {
-    background-color: gray;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-}
 .center {
     display: block;
     text-align: center;
-    color: red;
+}
+.red {
+    color: #F44336;
+}
+.white {
+    color: black;
+}
+.but {
+    background: #F44336;
+    color: #f3f3f3;
+    border-radius: 4px;
+    border: none;
+    padding: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 </style>
