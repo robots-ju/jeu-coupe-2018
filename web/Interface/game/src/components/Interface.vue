@@ -1,7 +1,9 @@
 <template>
   <div class="main">
+        <div class="loader" id='loader'></div>
         <h1 class='title'>{{ pseudo.toUpperCase() }}</h1>
-        <div class='center' v-if="limit === true">Nombre de block limite est atteint !</div>
+        <div class='center' v-if='liste.length > limit - 1'>Le nombre de block limite atteint !</div>
+        <div class='center' v-else>Il te reste {{ limit - liste.length }} block<span v-if='limit-liste.length > 1'>s</span></div>
         <div class='middle'>
 
             <div class='start' @click="start()"></div>
@@ -34,11 +36,8 @@
         <div class='loading' id='loading'>
             <span class='text front'>loading</span>
             <div id='animate'></div>
-
-
         </div>
         <div class='bottom'>
-
             <draggable
                 v-model="blockStart"
                 class="dragArea"
@@ -48,7 +47,7 @@
                     group:{
                         name:'block',
                         pull:'clone',
-                        put:true
+                        put:false
                     }
                 }"
                 :clone="cloneBlock"
@@ -77,12 +76,11 @@ export default {
     name: 'Interface',
     components:{
         draggable,
-
     },
     data () {
         return {
-            pseudo: localStorage.getItem('nom') || 'Joueur sans nom',
 
+            pseudo: localStorage.getItem('nom') || 'Joueur sans nom',
             blockStart: [
                 {id: 0, class: 'forward', name:'avancer'},
                 {id: 1, class: 'backward', name:'reculer'},
@@ -94,7 +92,7 @@ export default {
             liste: [],
             parentMsg: 10,
             newUid: 0,
-            limit: false,
+            limit: 7,
         }
     },
     methods:{
@@ -121,32 +119,22 @@ export default {
             this.emitMessage([blockClass]);
         },
         start() {
-            let loading = document.getElementById('loading')
+            let loading = document.getElementById('loader')
             let animate = document.getElementById('animate')
-            let id = setInterval(frame, 1)
             loading.style.visibility = 'visible'
             let index = 0;
-            function frame() {
-                console.log('coucou')
+            setTimeout(function(){
+                loading.style.visibility = 'hidden'
+            }, 2000);
 
-                if(index >= document.body.clientWidth-20){
-                    animate.style.width = '0px';
-                    loading.style.visibility = 'hidden'
-                    clearInterval(id)
-                }
-                index += 10;
-                animate.style.width = index+'px';
-            }
-            console.log(loading.style)
 
         },
         cloneBlock(original) {
-            if(this.liste.length < 7){
+            if(this.liste.length < this.limit){
                 let deepCopy = JSON.parse(JSON.stringify(original));
                 deepCopy.uid = ++this.newUid;
                 return deepCopy;
             }else{
-                this.limit = true
                 console.log('nombre de block maximum atteint')
             }
 
@@ -239,15 +227,14 @@ body {
     animation: pulse 0.1s;
     box-shadow: 0 0 0 2em rgba(#fff,0);
 }
-@keyframes pulse {
-  100% {
-
-  }
-}
 .dragArea {
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: gray;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
 }
 .dragArea1 {
     text-align: center;
@@ -276,12 +263,33 @@ body {
     margin:auto;
     bottom: 6%;
 }
-
+.loader {
+    visibility: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid gray;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 .loading {
     visibility: hidden;
     position: absolute;
     color: #fff;
-    bottom: 20%;
+    position: fixed;
+    bottom: 25%;
     left: 0;
     right: 0;
     text-align: center;
