@@ -19,6 +19,7 @@ body {
     display: table-cell;
     margin: 10;
     padding-left: 10px;
+    padding-right: 2px;
 }
 
 .instructions{
