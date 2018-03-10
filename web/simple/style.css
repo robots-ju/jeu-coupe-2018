@@ -1,7 +1,19 @@
 body {
-    margin:10;
-    padding:10;
-    left:10;
-    right:10;
     background-color: darkorange;
+}
+
+#app {
+    padding: 10px;
+}
+
+#app button {
+    margin: 0px 2px;
+}
+
+#app #send {
+    margin-left: 50px;
+}
+
+#affichecode img {
+    margin: 10px;
 }
