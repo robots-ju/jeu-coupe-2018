@@ -93,6 +93,7 @@ export default {
                 {id: 4, class: 'grab', name:'saisir'},
                 {id: 5, class: 'release', name:'lacher'},
             ],
+            robot: 0,
             liste: [],
             parentMsg: 10,
             newUid: 0,
@@ -115,7 +116,7 @@ export default {
         emitMessage(blocks) {
             console.log('Emit message', blocks)
             socket.emit('run', {
-                robot: 1,
+                robot: this.robot,
                 blocks: blocks,
             });
         },
@@ -126,7 +127,6 @@ export default {
                 console.log(element.class)
                 emitBlocks.push(element.class)
             });
-
             this.emitMessage(emitBlocks);
         },
         quickSend(blockClass) {
@@ -142,7 +142,6 @@ export default {
                 loading.style.visibility = 'hidden'
             }, 2000);
 
-
         },
         cloneBlock(original) {
             if(this.liste.length < this.limit){
@@ -156,6 +155,7 @@ export default {
         },
         resetScore() {
             this.liste = []
+            let robot = this.robot
             socket.emit('resetScore', {
                 robot,
             });
