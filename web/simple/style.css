@@ -9,6 +9,8 @@ body {
 
 #app button {
     margin: 0px 2px;
+    border: none;
+    background: none;
 }
 
 
