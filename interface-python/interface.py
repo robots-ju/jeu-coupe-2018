@@ -64,7 +64,8 @@ while i<7:
     bas.blit(blocks[i],(width//2-575+150*i,25))
     i+=1
 img_start=pygame.transform.scale(pygame.image.load("start.png"),(100,100))
-bas.blit(img_start,(width-150,25))
+img_start_del=pygame.transform.scale(pygame.image.load("start+del.png"),(100,100))
+bas.blit(img_start_del,(width-150,25))
 fond=pygame.Surface((width,height))
 fond.fill((0xff,0xaf,0x22))
 logo=pygame.image.load("Logo Coupe Robots-JU.png")
@@ -106,7 +107,6 @@ while continuer:
                         _programm*=10
                         _programm+=_block
                     cnx.send(createMailboxBuffer("run",_programm))
-                    programm=[]
             if event.pos[0] in range(reset_coords["left"],reset_coords["right"]) and event.pos[1] in range(reset_coords["top"],reset_coords["bottom"]):
                 cnx.send(createMailboxBuffer("score","0"))
                 score=0
