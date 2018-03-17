@@ -9,7 +9,13 @@
 
         </div>
         <div class="center">
-            <button class="but" @click="resetScore()">Remettre à zéro</button>
+            <button class="but" @click="resetScore()">Remettre à zéro le score</button>
+        </div>
+        <div class='center'>
+            <span>
+                Supprimer le programme lors de l'envoi ?
+            </span>
+            <input class='checkbox' type="checkbox" name="" id="checkbox">
         </div>
         <div class='middle'>
 
@@ -40,6 +46,7 @@
                 </div>
             </draggable>
         </div>
+
         <div class='bottom'>
             <draggable
                 v-model="blockStart"
@@ -93,7 +100,7 @@ export default {
                 {id: 4, class: 'grab', name:'saisir'},
                 {id: 5, class: 'release', name:'lacher'},
             ],
-            robot: 0,
+            robot: 1,
             liste: [],
             parentMsg: 10,
             newUid: 0,
@@ -105,6 +112,7 @@ export default {
         console.log('Socket logged !')
         socket.on('scoreChanged', change => {
             if (change.robot === robot) {
+                console.log('Score changed !')
                 this.score = change.robot
             }
         })
@@ -127,7 +135,10 @@ export default {
                 console.log(element.class)
                 emitBlocks.push(element.class)
             });
-            this.emitMessage(emitBlocks);
+            this.emitMessage(emitBlocks)
+            if(document.getElementById('checkbox').checked){
+                this.liste = [];
+            }
         },
         quickSend(blockClass) {
             this.emitMessage([blockClass]);
@@ -308,6 +319,7 @@ body {
 .center {
     display: block;
     text-align: center;
+    margin-top: 10px;
 }
 .red {
     color: #F44336;
@@ -316,12 +328,16 @@ body {
     color: black;
 }
 .but {
+    font-size: 18px;
     background: #F44336;
     color: #f3f3f3;
     border-radius: 4px;
     border: none;
-    padding: 4px;
+    padding: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+}
+.checkbox {
+    margin: 0;
 }
 </style>

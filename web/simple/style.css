@@ -9,6 +9,8 @@ body {
 
 #app button {
     margin: 0px 2px;
+    border: none;
+    background: none;
 }
 
 
@@ -21,6 +23,7 @@ body {
     margin-top: 35px;
     margin-left: 20px;
     font-size: 2em;
+    color: white
 
 }
 
@@ -55,4 +58,8 @@ body {
 }
 #resetScore {
     margin-left: 20px;
+}
+
+label{
+    color: white;
 }
