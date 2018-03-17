@@ -93,7 +93,7 @@ export default {
                 {id: 4, class: 'grab', name:'saisir'},
                 {id: 5, class: 'release', name:'lacher'},
             ],
-            robot: 0,
+            robot: 1,
             liste: [],
             parentMsg: 10,
             newUid: 0,
