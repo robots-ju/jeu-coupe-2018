@@ -4,7 +4,7 @@ Un jeu de programmation qui sera présenté aux visiteurs de la Coupe Robots-JU 
 
 ## Installation Python
 
-1. Installer "Pygame"
+1. Prérequis: `Pygame`
 2. Aller dans `interface-python` (Dépôt GitHub) et exécuter `interface.py`
 	
 *Pour sortir:*
@@ -14,12 +14,12 @@ Un jeu de programmation qui sera présenté aux visiteurs de la Coupe Robots-JU 
 
 ## Installation interface VueJS
 
-1. installer "npm"
+1. Prérequis: `npm`
 2. Ouvrez un terminal dans le dossier `web/Interface/game` (Dépôt GitHub)
 3. Exécuter la commande `npm install` puis `npm run build`
 
 ## Installation server Node
 
-1. Prérequis: node, yarn
+1. Prérequis: `node, yarn`
 2. Dans le dossier `server` exécuter `yarn install`
 3. Dans le dossier `server` exécuter `yarn start <nom brique>`
