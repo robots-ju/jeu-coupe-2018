@@ -111,7 +111,7 @@ export default {
     created: function(){
         console.log('Socket logged !')
         socket.on('scoreChanged', change => {
-            if (change.robot === robot) {
+            if (change.robot === this.robot) {
                 console.log('Score changed !')
                 this.score = change.robot
             }
