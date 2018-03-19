@@ -16,7 +16,7 @@
    version="1.1"
    id="svg3735"
    sodipodi:docname="clear_element.svg"
-   inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\BackUp\Images\clear_programm.png"
+   inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\clear_element.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
@@ -39,8 +39,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="239.68235"
-     inkscape:cy="455.69212"
+     inkscape:cx="490.39664"
+     inkscape:cy="308.54926"
      inkscape:document-units="mm"
      inkscape:current-layer="layer8"
      showgrid="false"
@@ -64,7 +64,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -100,6 +100,16 @@
       <g
          id="g912"
          style="fill:#060606;fill-opacity:1" />
+    </g>
+    <g
+       transform="matrix(3.1720023,0,0,3.1720023,22.566266,22.565509)"
+       id="g4-3"
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.52206627;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.49019608">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 44.373,7.603 c -10.137,-10.137 -26.632,-10.138 -36.77,0 -10.138,10.138 -10.137,26.632 0,36.77 10.137,10.138 26.632,10.138 36.77,0 10.137,-10.138 10.137,-26.633 0,-36.77 z m -8.132,28.638 c -0.781,0.781 -2.047,0.781 -2.828,0 l -7.425,-7.425 -7.778,7.778 c -0.781,0.781 -2.047,0.781 -2.828,0 -0.781,-0.781 -0.781,-2.047 0,-2.828 l 7.778,-7.778 -7.425,-7.425 c -0.781,-0.781 -0.781,-2.048 0,-2.828 0.781,-0.781 2.047,-0.781 2.828,0 l 7.425,7.425 7.071,-7.071 c 0.781,-0.781 2.047,-0.781 2.828,0 0.781,0.781 0.781,2.047 0,2.828 l -7.071,7.071 7.425,7.425 c 0.781,0.781 0.781,2.047 0,2.828 z"
+         id="path2-4-9"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.52206627;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.49019608" />
     </g>
   </g>
   <g

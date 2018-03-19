@@ -15,8 +15,8 @@
    viewBox="0 0 200 200"
    version="1.1"
    id="svg3735"
-   sodipodi:docname="release.svg"
-   inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\release.png"
+   sodipodi:docname="grab.svg"
+   inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\grab.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
@@ -38,9 +38,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="80.131512"
-     inkscape:cy="401.8711"
+     inkscape:zoom="0.7"
+     inkscape:cx="184.82722"
+     inkscape:cy="302.45726"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="false"
@@ -99,7 +99,7 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
        style="opacity:1;fill:#000000;fill-opacity:0.49019608;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.49019608"
-       d="m 81.795592,146.34572 16.53223,17.28647 -16.53223,17.28646 v -8.64323 h -16.53223 v -17.28646 h 16.53223 z"
+       d="m 80.504035,146.34572 -16.53223,17.28647 16.53223,17.28646 v -8.64323 h 16.53223 v -17.28646 h -16.53223 z"
        id="path6165-1-2"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
@@ -107,7 +107,7 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
        style="opacity:1;fill:#000000;fill-opacity:0.49019608;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.49019608"
-       d="m 121.48705,146.34572 -16.53224,17.28647 16.53224,17.28646 v -8.64323 h 16.53223 v -17.28646 h -16.53223 z"
+       d="m 120.19561,146.34572 16.53224,17.28647 -16.53224,17.28646 v -8.64323 h -16.53223 v -17.28646 h 16.53223 z"
        id="path6165-7-1-3"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
@@ -121,27 +121,32 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="Calque 4">
-    <path
-       style="fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 83.33125,22.896233 V 73.10996 l -55.5625,55.79303 16.66874,44.63443 H 55.55 c -4.98654,-36.83658 6.125,-59.15379 45.01875,-59.15379 38.89375,0 44.45095,22.31721 43.88124,59.15379 H 155.5625 L 172.23125,128.90299 111.1125,73.10996 V 22.896233 Z"
-       id="path1443-5"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccccccc" />
-    <path
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"
-       style="opacity:1;fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 80.504112,144.5205 16.53223,17.28647 -16.53223,17.28646 v -8.64322 h -16.53223 v -17.28646 h 16.53223 z"
-       id="path6165-1"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
-    <path
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"
-       style="opacity:1;fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 120.19554,144.5205 -16.53224,17.28647 16.53224,17.28646 v -8.64322 h 16.53223 v -17.28646 h -16.53223 z"
-       id="path6165-7-1"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png" />
+    <g
+       id="g2050-2"
+       transform="translate(-234.23807,16.925695)"
+       style="fill:#fffffe;fill-opacity:1">
+      <path
+         sodipodi:nodetypes="cccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path1443-5"
+         d="M 317.56932,5.9705382 V 56.184265 l -55.5625,55.793025 16.66874,44.63443 h 11.11251 c -4.98654,-36.83658 6.125,-59.153787 45.01875,-59.153787 38.89375,0 44.45095,22.317207 43.88124,59.153787 h 11.11251 L 406.46932,111.97729 345.35057,56.184265 V 5.9705382 Z"
+         style="fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png"
+         inkscape:connector-curvature="0"
+         id="path6165-1"
+         d="m 313.38775,127.59481 -16.53223,17.28647 16.53223,17.28646 v -8.64323 h 16.53223 v -17.28646 h -16.53223 z"
+         style="opacity:1;fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96" />
+      <path
+         inkscape:export-filename="C:\Users\RobotJu\Documents\GitHub\AtelierAvancé_GitHub\web\Interface\images\forward.png"
+         inkscape:connector-curvature="0"
+         id="path6165-7-1"
+         d="m 353.07934,127.59481 16.53224,17.28647 -16.53224,17.28646 v -8.64323 h -16.53223 v -17.28646 h 16.53223 z"
+         style="opacity:1;fill:#fffffe;fill-opacity:1;stroke:#000000;stroke-width:4.02126169;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96" />
+    </g>
   </g>
 </svg>
